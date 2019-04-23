@@ -6,6 +6,7 @@ public class AwesomeDialog {
     String bodyText;
     //optional parameters
     int headerColor;
+    boolean cancelable;
 
     public int getHeaderIcon() {
         return headerIcon;
@@ -31,14 +32,23 @@ public class AwesomeDialog {
         this.headerColor = headerColor;
     }
 
+    public boolean isCancelable() {
+        return cancelable;
+    }
+
+    public void setCancelable(boolean cancelable) {
+        this.cancelable = cancelable;
+    }
+
     private AwesomeDialog(AwesomeDialogBuilder awesomeDialogBuilder) {
-        this.headerIcon=awesomeDialogBuilder.headerIcon;
-        this.bodyText=awesomeDialogBuilder.bodyText;
-        this.headerColor=awesomeDialogBuilder.headerColor;
+        this.headerIcon = awesomeDialogBuilder.headerIcon;
+        this.bodyText = awesomeDialogBuilder.bodyText;
+        this.headerColor = awesomeDialogBuilder.headerColor;
+        this.cancelable=awesomeDialogBuilder.cancelable;
     }
 
     //Builder Class
-    public static class AwesomeDialogBuilder{
+    public static class AwesomeDialogBuilder {
 
         // required parameters
         private int headerIcon;
@@ -46,18 +56,23 @@ public class AwesomeDialog {
 
         // optional parameters
         private int headerColor;
+        private boolean cancelable;
 
-        public AwesomeDialogBuilder(int headerIcon,String bodyText){
-            this.headerIcon=headerIcon;
-            this.bodyText=bodyText;
+        public AwesomeDialogBuilder(int headerIcon, String bodyText) {
+            this.headerIcon = headerIcon;
+            this.bodyText = bodyText;
         }
 
         public AwesomeDialogBuilder setHeaderColor(int headerColor) {
-            this.headerColor=headerColor;
+            this.headerColor = headerColor;
+            return this;
+        }
+        public AwesomeDialogBuilder setCancelable(boolean cancelable) {
+            this.cancelable=cancelable;
             return this;
         }
 
-        public AwesomeDialog build(){
+        public AwesomeDialog build() {
             return new AwesomeDialog(this);
         }
     }
